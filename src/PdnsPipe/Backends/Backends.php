@@ -13,7 +13,7 @@ namespace NINEJKH\PdnsPipe\Backends;
 
 use NINEJKH\PdnsPipe\Stream;
 
-abstract class Backends implements Backend
+abstract class Backends
 {
     protected $version;
 
@@ -42,7 +42,7 @@ abstract class Backends implements Backend
 
             case 'Q':
                 list ($qname, $qclass, $qtype, $id, $remote_addr) = array_slice($data, 1);
-                $records = $this->lookup($zones, $qname, $qtype, $id, $remote_addr);
+                $records = $this->lookup($qname, $qclass, $qtype, $id, $remote_addr);
                 if (!empty($records)) {
                     foreach ($records as $record) {
                         array_unshift($record, 'DATA');
